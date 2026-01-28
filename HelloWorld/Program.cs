@@ -1,3 +1,5 @@
+using Microsoft.EntityFrameworkCore;
+
 namespace HelloWorld
 {
     public class Program
@@ -8,6 +10,9 @@ namespace HelloWorld
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+
+            builder.Services.AddDbContext<KcgContext>(options =>
+            options.UseSqlServer(builder.Configuration.GetConnectionString("KcgDatabase")));
 
             var app = builder.Build();
 
